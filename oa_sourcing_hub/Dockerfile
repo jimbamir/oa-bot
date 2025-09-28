@@ -1,45 +1,23 @@
 
-# Home Assistant Add-on Base
-ARG BUILD_FROM=ghcr.io/home-assistant/amd64-base:latest
+# Use the official hassio-addons base which includes bashio + s6
+ARG BUILD_FROM=ghcr.io/hassio-addons/base:16.2.3
 FROM ${BUILD_FROM}
 
-# System Python & tools
+# System packages & python
 RUN apk add --no-cache     jq     python3 py3-pip     py3-numpy py3-pandas py3-lxml     libstdc++ libffi-dev openssl-dev     gcc musl-dev libxml2-dev libxslt-dev
 
-# Virtualenv for Python packages
+# Virtualenv to avoid PEP 668 issues
 RUN python3 -m venv /opt/venv
 ENV PATH="/opt/venv/bin:${PATH}"     PYTHONDONTWRITEBYTECODE=1     PYTHONUNBUFFERED=1     PIP_DISABLE_PIP_VERSION_CHECK=on
 
 WORKDIR /app
 COPY requirements.txt /app/requirements.txt
-RUN pip install --no-cache-dir --upgrade pip && pip install --no-cache-dir -r /app/requirements.txt
+RUN pip install --no-cache-dir --upgrade pip &&     pip install --no-cache-dir -r /app/requirements.txt
 
 COPY app /app
 
-# s6 services (pure /bin/sh scripts)
-
-# cont-init hook (pure /bin/sh)
+# Copy s6 service
 COPY rootfs/ /
-
-EXPOSE 8501
-
-# Copy runtime script and set as container PID 1
-COPY run.sh /run.sh
-RUN chmod +x /run.sh
-
-EXPOSE 8501
-
-# s6 services
-
-# cont-init hook
-
-EXPOSE 8501
-
-# s6 service + cont-init
-COPY rootfs/etc/services.d/oa/run /etc/services.d/oa/run
 RUN chmod +x /etc/services.d/oa/run
-
-COPY rootfs/etc/cont-init.d/00-oa-diag /etc/cont-init.d/00-oa-diag
-RUN chmod +x /etc/cont-init.d/00-oa-diag
 
 EXPOSE 8501
