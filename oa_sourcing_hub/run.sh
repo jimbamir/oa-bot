@@ -1,4 +1,4 @@
-
+#!/command/with-contenv bashio
 #!/usr/bin/with-contenv bash
 # shellcheck shell=bash
 set -e
