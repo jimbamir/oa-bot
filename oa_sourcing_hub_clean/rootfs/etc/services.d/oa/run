@@ -1,7 +1,10 @@
 #!/command/with-contenv bashio
+# official HA add-on service
 set -euo pipefail
-bashio::log.info "OA Hub (clean slug) starting..."
 
+bashio::log.info "OA Hub starting (clean slug 1.5.1)..."
+
+# Read options
 export KEEPA_KEY="$(bashio::config 'KEEPA_KEY')"
 export DEFAULT_MIN_ROI="$(bashio::config 'DEFAULT_MIN_ROI')"
 export DEFAULT_MIN_MARGIN="$(bashio::config 'DEFAULT_MIN_MARGIN')"

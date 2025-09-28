@@ -1,3 +1,7 @@
-# OA Sourcing Hub PRO
+# OA Sourcing Hub PRO (clean slug)
 
-Home Assistant add-on that runs a Streamlit UI for EU-wide product sourcing with Keepa enrichment.
+This is a clean-slung Home Assistant add-on using the official hassio-addons base.
+- Uses s6 + bashio correctly.
+- No `cont-init.d` scripts.
+- Service located at `rootfs/etc/services.d/oa/run`.
+- Streamlit UI on port 8501.
