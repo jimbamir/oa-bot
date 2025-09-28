@@ -1,0 +1,44 @@
+{
+  "name": "OA Sourcing Hub PRO",
+  "version": "1.1.0",
+  "slug": "oa_sourcing_hub",
+  "description": "EU-weiter Produkt-Sourcing-Bot mit Keepa (Streamlit UI) + E-Mail Benachrichtigungen",
+  "arch": [
+    "amd64",
+    "aarch64"
+  ],
+  "startup": "services",
+  "boot": "auto",
+  "ports": {
+    "8501/tcp": 8501
+  },
+  "webui": "http://[HOST]:[PORT:8501]",
+  "options": {
+    "KEEPA_KEY": "",
+    "DEFAULT_MIN_ROI": 0.3,
+    "DEFAULT_MIN_MARGIN": 0.12,
+    "EXCLUDE_AMAZON_SELLER": true,
+    "CRAWL_CONCURRENCY": 6,
+    "EMAIL_ENABLED": false,
+    "EMAIL_SMTP_HOST": "",
+    "EMAIL_SMTP_PORT": 587,
+    "EMAIL_USERNAME": "",
+    "EMAIL_PASSWORD": "",
+    "EMAIL_FROM": "",
+    "EMAIL_TO": ""
+  },
+  "schema": {
+    "KEEPA_KEY": "str",
+    "DEFAULT_MIN_ROI": "float",
+    "DEFAULT_MIN_MARGIN": "float",
+    "EXCLUDE_AMAZON_SELLER": "bool",
+    "CRAWL_CONCURRENCY": "int",
+    "EMAIL_ENABLED": "bool",
+    "EMAIL_SMTP_HOST": "str",
+    "EMAIL_SMTP_PORT": "int",
+    "EMAIL_USERNAME": "str",
+    "EMAIL_PASSWORD": "str",
+    "EMAIL_FROM": "str",
+    "EMAIL_TO": "str"
+  }
+}
