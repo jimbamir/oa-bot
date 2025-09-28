@@ -1,7 +1,8 @@
 
-#!/usr/bin/env bash
+#!/usr/bin/with-contenv bashio
 set -e
 
+# Read addon options via bashio
 export KEEPA_KEY="$(bashio::config 'KEEPA_KEY')"
 export DEFAULT_MIN_ROI="$(bashio::config 'DEFAULT_MIN_ROI')"
 export DEFAULT_MIN_MARGIN="$(bashio::config 'DEFAULT_MIN_MARGIN')"
@@ -17,4 +18,4 @@ export EMAIL_FROM="$(bashio::config 'EMAIL_FROM')"
 export EMAIL_TO="$(bashio::config 'EMAIL_TO')"
 
 cd /app
-exec streamlit run app.py --server.port 8501 --server.address 0.0.0.0
+exec /opt/venv/bin/streamlit run app.py --server.port 8501 --server.address 0.0.0.0
