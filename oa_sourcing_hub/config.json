@@ -1,6 +1,6 @@
 {
   "name": "OA Sourcing Hub PRO",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "slug": "oa_sourcing_hub",
   "description": "EU-weiter Produkt-Sourcing-Bot mit Keepa (Streamlit UI) + E-Mail Benachrichtigungen",
   "arch": [
