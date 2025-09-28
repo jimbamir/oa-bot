@@ -30,11 +30,16 @@ RUN chmod +x /run.sh
 EXPOSE 8501
 
 # s6 services
+
+# cont-init hook
+
+EXPOSE 8501
+
+# s6 service + cont-init
 COPY rootfs/etc/services.d/oa/run /etc/services.d/oa/run
 RUN chmod +x /etc/services.d/oa/run
 
-# cont-init hook
-COPY rootfs/etc/cont-init.d/00-log-config /etc/cont-init.d/00-log-config
-RUN chmod +x /etc/cont-init.d/00-log-config
+COPY rootfs/etc/cont-init.d/00-oa-diag /etc/cont-init.d/00-oa-diag
+RUN chmod +x /etc/cont-init.d/00-oa-diag
 
 EXPOSE 8501

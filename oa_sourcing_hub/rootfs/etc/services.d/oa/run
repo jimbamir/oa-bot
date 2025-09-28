@@ -1,21 +1,38 @@
-#!/command/with-contenv bashio
-# Official HA add-on s6 service entry. Do not change the shebang/path.
-set -euo pipefail
+#!/bin/sh
+# DIAGNOSTIC service runner (no with-contenv/bashio)
 
-# Read options via bashio
-export KEEPA_KEY="$(bashio::config 'KEEPA_KEY')"
-export DEFAULT_MIN_ROI="$(bashio::config 'DEFAULT_MIN_ROI')"
-export DEFAULT_MIN_MARGIN="$(bashio::config 'DEFAULT_MIN_MARGIN')"
-export EXCLUDE_AMAZON_SELLER="$(bashio::config 'EXCLUDE_AMAZON_SELLER')"
-export CRAWL_CONCURRENCY="$(bashio::config 'CRAWL_CONCURRENCY')"
+set -eu
 
-export EMAIL_ENABLED="$(bashio::config 'EMAIL_ENABLED')"
-export EMAIL_SMTP_HOST="$(bashio::config 'EMAIL_SMTP_HOST')"
-export EMAIL_SMTP_PORT="$(bashio::config 'EMAIL_SMTP_PORT')"
-export EMAIL_USERNAME="$(bashio::config 'EMAIL_USERNAME')"
-export EMAIL_PASSWORD="$(bashio::config 'EMAIL_PASSWORD')"
-export EMAIL_FROM="$(bashio::config 'EMAIL_FROM')"
-export EMAIL_TO="$(bashio::config 'EMAIL_TO')"
+echo "[oa][run] ====== START ======"
+echo "[oa][run] /proc/1/cmdline: $(tr -d '\0' </proc/1/cmdline || true)"
+echo "[oa][run] which jq: $(which jq || echo 'jq NOT FOUND')"
+echo "[oa][run] ls -l /command: $(ls -ld /command 2>/dev/null || echo 'no /command')"
+echo "[oa][run] ls -l /etc/services.d/oa/run: $(ls -l /etc/services.d/oa/run || true)"
+echo "[oa][run] options.json exists? $( [ -f /data/options.json ] && echo yes || echo no )"
 
+getopt_json() {
+  key="$1"; default="$2"
+  if [ -f /data/options.json ] && command -v jq >/dev/null 2>&1; then
+    val="$(jq -er --arg k "$key" '.[$k] // empty' /data/options.json 2>/dev/null || true)"
+    [ -n "${val:-}" ] && { echo "$val"; return; }
+  fi
+  echo "$default"
+}
+
+export KEEPA_KEY="$(getopt_json KEEPA_KEY "")"
+export DEFAULT_MIN_ROI="$(getopt_json DEFAULT_MIN_ROI "0.30")"
+export DEFAULT_MIN_MARGIN="$(getopt_json DEFAULT_MIN_MARGIN "0.12")"
+export EXCLUDE_AMAZON_SELLER="$(getopt_json EXCLUDE_AMAZON_SELLER "true")"
+export CRAWL_CONCURRENCY="$(getopt_json CRAWL_CONCURRENCY "6")"
+
+export EMAIL_ENABLED="$(getopt_json EMAIL_ENABLED "false")"
+export EMAIL_SMTP_HOST="$(getopt_json EMAIL_SMTP_HOST "")"
+export EMAIL_SMTP_PORT="$(getopt_json EMAIL_SMTP_PORT "587")"
+export EMAIL_USERNAME="$(getopt_json EMAIL_USERNAME "")"
+export EMAIL_PASSWORD="$(getopt_json EMAIL_PASSWORD "")"
+export EMAIL_FROM="$(getopt_json EMAIL_FROM "")"
+export EMAIL_TO="$(getopt_json EMAIL_TO "")"
+
+echo "[oa][run] launching streamlit..."
 cd /app
 exec /opt/venv/bin/streamlit run app.py --server.port 8501 --server.address 0.0.0.0

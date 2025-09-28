@@ -1,0 +1,8 @@
+#!/bin/sh
+set -eu
+echo "[oa][init] ====== CONT-INIT ======"
+echo "[oa][init] /proc/1/cmdline: $(tr -d '\0' </proc/1/cmdline || true)"
+echo "[oa][init] uid/gid: $(id || true)"
+echo "[oa][init] env keys: $(env | cut -d= -f1 | sort | tr '\n' ' ' | head -c 400) ..."
+echo "[oa][init] options.json exists? $( [ -f /data/options.json ] && echo yes || echo no )"
+exit 0
