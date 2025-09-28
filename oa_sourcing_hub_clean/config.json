@@ -1,8 +1,8 @@
 {
   "name": "OA Sourcing Hub PRO (clean)",
   "slug": "oa_sourcing_hub_clean",
-  "version": "1.5.1",
-  "description": "EU product sourcing bot with Keepa enrichment (clean slug).",
+  "version": "1.5.2",
+  "description": "Minimal clean add-on with pure /bin/sh s6 service. Streamlit UI on 8501.",
   "arch": [
     "amd64"
   ],
@@ -16,32 +16,6 @@
   "ports_description": {
     "8501/tcp": "Web UI (Streamlit)"
   },
-  "schema": {
-    "KEEPA_KEY": "str?",
-    "DEFAULT_MIN_ROI": "float?",
-    "DEFAULT_MIN_MARGIN": "float?",
-    "EXCLUDE_AMAZON_SELLER": "bool?",
-    "CRAWL_CONCURRENCY": "int?",
-    "EMAIL_ENABLED": "bool?",
-    "EMAIL_SMTP_HOST": "str?",
-    "EMAIL_SMTP_PORT": "int?",
-    "EMAIL_USERNAME": "str?",
-    "EMAIL_PASSWORD": "str?",
-    "EMAIL_FROM": "str?",
-    "EMAIL_TO": "str?"
-  },
-  "options": {
-    "KEEPA_KEY": "",
-    "DEFAULT_MIN_ROI": 0.3,
-    "DEFAULT_MIN_MARGIN": 0.12,
-    "EXCLUDE_AMAZON_SELLER": true,
-    "CRAWL_CONCURRENCY": 6,
-    "EMAIL_ENABLED": false,
-    "EMAIL_SMTP_HOST": "",
-    "EMAIL_SMTP_PORT": 587,
-    "EMAIL_USERNAME": "",
-    "EMAIL_PASSWORD": "",
-    "EMAIL_FROM": "",
-    "EMAIL_TO": ""
-  }
+  "options": {},
+  "schema": {}
 }
