@@ -1,0 +1,4 @@
+#!/bin/sh
+set -eu
+echo "[s6pure] s6 service started ✅ (pure /bin/sh)"
+exec tail -f /dev/null

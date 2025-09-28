@@ -1,0 +1,13 @@
+{
+  "name": "S6 Pure Test",
+  "slug": "s6_pure_test",
+  "version": "0.0.1",
+  "description": "Pure /bin/sh s6 service: print a line, then tail -f /dev/null.",
+  "arch": [
+    "amd64"
+  ],
+  "startup": "services",
+  "init": true,
+  "ingress": false,
+  "ports": {}
+}
