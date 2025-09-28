@@ -1,8 +1,8 @@
 {
   "name": "Hello s6 Test",
   "slug": "hello_s6_test",
-  "version": "0.0.1",
-  "description": "Minimal service: logs a message and sleeps forever. Verifies s6 is working.",
+  "version": "0.0.3",
+  "description": "Minimal service to verify s6 starts a pure /bin/sh script (no bashio).",
   "arch": [
     "amd64"
   ],

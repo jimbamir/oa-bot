@@ -1,2 +1,2 @@
-# OA Sourcing Hub PRO (clean 1.5.2)
-Pure /bin/sh s6 service; no cont-init; CRLF sanitized at build.
+# Plan A Test Repo
+Contains hello_s6_test and oa_sourcing_hub_clean (pure /bin/sh).

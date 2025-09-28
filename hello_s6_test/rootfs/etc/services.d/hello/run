@@ -1,5 +1,5 @@
 #!/bin/sh
 set -eu
-echo "[hello] s6 service started ✅"
-# keep container alive
+echo "[hello] s6 service started ✅ (pure /bin/sh)"
+# Keep container alive for inspection
 exec tail -f /dev/null
