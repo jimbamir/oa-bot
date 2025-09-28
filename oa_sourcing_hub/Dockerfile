@@ -28,4 +28,13 @@ COPY run.sh /run.sh
 RUN chmod +x /run.sh
 
 EXPOSE 8501
-CMD ["/bin/sh","/run.sh"]
+
+# s6 services
+COPY rootfs/etc/services.d/oa/run /etc/services.d/oa/run
+RUN chmod +x /etc/services.d/oa/run
+
+# cont-init hook
+COPY rootfs/etc/cont-init.d/00-log-config /etc/cont-init.d/00-log-config
+RUN chmod +x /etc/cont-init.d/00-log-config
+
+EXPOSE 8501
