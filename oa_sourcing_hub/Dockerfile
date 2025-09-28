@@ -17,12 +17,15 @@ RUN pip install --no-cache-dir --upgrade pip && pip install --no-cache-dir -r /a
 COPY app /app
 
 # s6 services (pure /bin/sh scripts)
-RUN mkdir -p /etc/services.d/oa
-COPY run.sh /etc/services.d/oa/run
-RUN chmod +x /etc/services.d/oa/run
 
 # cont-init hook (pure /bin/sh)
 COPY rootfs/ /
-RUN chmod +x /etc/cont-init.d/00-log-config
 
 EXPOSE 8501
+
+# Copy runtime script and set as container PID 1
+COPY run.sh /run.sh
+RUN chmod +x /run.sh
+
+EXPOSE 8501
+CMD ["/bin/sh","/run.sh"]
