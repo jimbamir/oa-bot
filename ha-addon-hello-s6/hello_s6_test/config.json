@@ -1,0 +1,13 @@
+{
+  "name": "Hello s6 Test",
+  "slug": "hello_s6_test",
+  "version": "0.0.1",
+  "description": "Minimal service: logs a message and sleeps forever. Verifies s6 is working.",
+  "arch": [
+    "amd64"
+  ],
+  "startup": "services",
+  "init": true,
+  "ingress": false,
+  "ports": {}
+}
