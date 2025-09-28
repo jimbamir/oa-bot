@@ -1,0 +1,5 @@
+#!/bin/sh
+set -eu
+echo "[oahub] service starting (pure /bin/sh)"
+cd /app
+exec /opt/venv/bin/streamlit run app.py --server.port 8501 --server.address 0.0.0.0

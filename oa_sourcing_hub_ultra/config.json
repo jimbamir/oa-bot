@@ -1,0 +1,21 @@
+{
+  "name": "OA Sourcing Hub PRO (ultra)",
+  "slug": "oa_sourcing_hub_ultra",
+  "version": "1.6.0",
+  "description": "Minimal OA Hub with Streamlit (8501). Pure /bin/sh s6 service; no cont-init.",
+  "arch": [
+    "amd64"
+  ],
+  "startup": "services",
+  "init": true,
+  "ingress": false,
+  "webui": "http://[HOST]:[PORT:8501]/",
+  "ports": {
+    "8501/tcp": 8501
+  },
+  "ports_description": {
+    "8501/tcp": "Web UI (Streamlit)"
+  },
+  "options": {},
+  "schema": {}
+}

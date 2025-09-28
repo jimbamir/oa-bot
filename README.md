@@ -1,2 +1,2 @@
-# S6 Pure Test Add-on
-Minimal s6-only add-on with pure /bin/sh service.
+# OA Ultra Repo
+Brand-new slugs. Pure /bin/sh s6 services. No cont-init.

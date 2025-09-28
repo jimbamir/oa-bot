@@ -1,0 +1,13 @@
+{
+  "name": "S6 Zero Test",
+  "slug": "s6_zero_test",
+  "version": "0.0.4",
+  "description": "Pure /bin/sh s6 service. Prints a line and sleeps. No cont-init, no bashio.",
+  "arch": [
+    "amd64"
+  ],
+  "startup": "services",
+  "init": true,
+  "ingress": false,
+  "ports": {}
+}
