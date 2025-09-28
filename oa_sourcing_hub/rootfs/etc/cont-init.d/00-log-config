@@ -1,0 +1,4 @@
+#!/bin/sh
+set -e
+echo "[oa] cont-init: options.json present? $( [ -f /data/options.json ] && echo yes || echo no )"
+exit 0

@@ -1,13 +1,12 @@
-
 #!/bin/sh
 set -eu
 
-# Read options from /data/options.json using jq (no bashio, no with-contenv)
+# Read /data/options.json via jq
 getopt() {
   key="$1"; default="$2"
   if [ -f /data/options.json ]; then
-    val="$(jq -r --arg k "$key" '.[$k] // empty' /data/options.json 2>/dev/null || true)"
-    [ -n "$val" ] && { echo "$val"; return; }
+    val="$(jq -er --arg k "$key" '.[$k] // empty' /data/options.json 2>/dev/null || true)"
+    [ -n "${val:-}" ] && { echo "$val"; return; }
   fi
   echo "$default"
 }
